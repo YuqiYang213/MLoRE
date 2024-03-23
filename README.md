@@ -1,6 +1,6 @@
 #  [CVPR2024]Multi-Task Dense Prediction via Mixture of Low-Rank Experts
 
-![snowboard_1](https://github.com/YuqiYang213/MLoRE/demo.gif)
+![snowboard_1](imgs/demo.gif)
 
 
 ##  Abstract
@@ -12,7 +12,7 @@ We propose MLoRE, a new multi-task framework for dense prediction. We provide th
 
 Please check the [paper](https://openreview.net/pdf?id=-CwPopPJda) for more details.
 <p align="center">
-  <img alt="img-name" src="https://github.com/YuqiYang213/MLoRE/pipeline1.pdf" width="800">
+  <img alt="img-name" src="imgs/pipeline1.pdf" width="800">
   <br>
     <em>Framework overview of the proposed MLoRE for multi-task scene understanding.</em>
 </p>
