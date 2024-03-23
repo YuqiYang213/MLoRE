@@ -12,7 +12,7 @@ We propose MLoRE, a new multi-task framework for dense prediction. We provide th
 
 Please check the [paper](https://openreview.net/pdf?id=-CwPopPJda) for more details.
 <p align="center">
-  <img alt="img-name" src="imgs/pipeline1.pdf" width="800">
+  <img alt="img-name" src="imgs/pipeline1.png" width="800">
   <br>
     <em>Framework overview of the proposed MLoRE for multi-task scene understanding.</em>
 </p>
