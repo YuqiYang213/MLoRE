@@ -4,13 +4,13 @@
 
 
 ##  Abstract
-We propose MLoRE, a new multi-task framework for dense prediction. We provide the code for PASCAL-Context and NYUD-v2 based on ViT.
+We provide the code for MLoRE, a new multi-task framework for dense prediction. Our code is implented on PASCAL-Context and NYUD-v2 based on ViT.
 
 - MLoRE builds a novel decoder module based on MoE(Mixture of Experts) that can capture the global relationship across all tasks.
-- To further reduce the computation cost and parameters, we introduce low-rank linear experts, which can enlarge the capacity of feature representations without increasing the model size too much.
-- Our design achieves a new state-of-the-art (SOTA) performance with superior efficiency on PASCAL-Context and NYUD-v2. 
+- To further reduce the computation cost and parameters, MLoRE introduce low-rank linear experts, which can enlarge the capacity of feature representations without increasing the model size too much.
+- The design of MLoRE achieves a new state-of-the-art (SOTA) performance with superior efficiency on PASCAL-Context and NYUD-v2. 
 
-Please check the [paper](https://openreview.net/pdf?id=-CwPopPJda) for more details.
+Please check the [paper]() for more details.
 <p align="center">
   <img alt="img-name" src="imgs/pipeline1.png" width="800">
   <br>
