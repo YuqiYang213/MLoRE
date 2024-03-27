@@ -1,7 +1,8 @@
-#  [CVPR2024]Multi-Task Dense Prediction via Mixture of Low-Rank Experts
+#  [CVPR2024] Multi-Task Dense Prediction via Mixture of Low-Rank Experts
 
-![snowboard_1](imgs/demo.gif)
-
+<p align="center">
+  <img src="imgs/demo.gif" alt="demo">
+</p>
 
 ##  Abstract
 We provide the code for MLoRE, a new multi-task framework for dense prediction. Our code is implented on PASCAL-Context and NYUD-v2 based on ViT.
