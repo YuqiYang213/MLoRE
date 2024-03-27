@@ -11,7 +11,7 @@ We provide the code for MLoRE, a new multi-task framework for dense prediction. 
 - To further reduce the computation cost and parameters, MLoRE introduce low-rank linear experts, which can enlarge the capacity of feature representations without increasing the model size too much.
 - The design of MLoRE achieves a new state-of-the-art (SOTA) performance with superior efficiency on PASCAL-Context and NYUD-v2. 
 
-Please check the [paper]() for more details.
+Please check the [paper](https://arxiv.org/abs/2403.17749) for more details.
 <p align="center">
   <img alt="img-name" src="imgs/pipeline1.png" width="800">
   <br>
@@ -95,11 +95,11 @@ To evaluate the pre-trained models, you can change the ```--trained_model MODEL_
 #  Cite
 <!-- Please consider :star2: star our project to share with your community if you find this repository helpful! -->
 If you find our work helpful, please cite:
-
+<!-- 
 BibTex:
 ```
 
-```
+``` -->
 
 # Contact
 If you have any questions, please feel free to contact Me(yangyq2000 AT mail DOT nankai DOT edu DOT cn).
