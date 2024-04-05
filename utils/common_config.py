@@ -216,8 +216,6 @@ def get_loss(p, task=None):
     elif task == 'depth':
         from losses.loss_functions import L1Loss
         criterion = L1Loss(ignore_invalid_area=p.ignore_invalid_area_depth, ignore_index=0)
-        # from losses.loss_functions import SiLogLoss
-        # criterion = SiLogLoss(lambd=0.5)
 
     else:
         criterion = None

@@ -76,10 +76,6 @@ def collate_mil(batch):
         return batch_modified
 
     elif isinstance(batch[0], collections.Sequence):
-        # transposed = zip(*batch)
-        # return [collate_mil(samples) for samples in transposed]
-
-        # yhr: change this for tolerating lists with different lengths from different samples.
         out = []
         for samples in batch:
             out.append(collate_mil(samples))

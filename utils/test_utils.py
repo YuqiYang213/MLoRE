@@ -38,7 +38,6 @@ def test_phase(p, test_loader, model, criterion, epoch):
     for i in range(4):
         route_1_task.append({task:0 for task in p.TASKS.NAMES})
         route_2_task.append({task:0 for task in p.TASKS.NAMES})
-    have_route = False
     
     for i, batch in enumerate(tqdm(test_loader)):
         # Forward pass

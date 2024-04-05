@@ -32,9 +32,6 @@ def train_phase(p, args, train_loader, test_dataloader, model, criterion, optimi
         # get learning rate
         lr = scheduler.get_lr()
         loss_dict['lr'] = torch.tensor(lr[0])
-
-        # if tb_writer is not None:
-        #     update_tb(tb_writer, 'Train_Loss', loss_dict, iter_count)
         
         # Backward
         optimizer.zero_grad()

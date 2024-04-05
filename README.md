@@ -85,9 +85,9 @@ We provide the pretrained classification models on PASCAL-Context and NYUD-v2.
 ### Download pre-trained models
 |Version | Dataset | Download | Depth (RMSE) | Segmentation (mIoU) |  Human parsing (mIoU) | Saliency (maxF) | Normals (mErr) | Boundary (odsF) | 
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| MLoRE (ViT-L)| PASCAL-Context | - | - |81.41 | 70.52 |84.90 | 13.51 | 75.42 |
-| MLoRE (ViT-B)| PASCAL-Context | - | - | 79.26 | 67.82 |85.31 | 13.65 | 74.69 |
-| MLoRE (ViT-L) | NYUD-v2 | - | 0.5076 | 55.96 | - | - | 18.33 | 78.43 |
+| MLoRE (ViT-L)| PASCAL-Context | [Google](https://drive.google.com/file/d/1s35pDbFctDl1eLqMFFycEuBxMlA2Vtoa/view?usp=sharing) | - |81.41 | 70.52 |84.90 | 13.51 | 75.42 |
+| MLoRE (ViT-B)| PASCAL-Context | [Google](https://drive.google.com/file/d/1Hu8bHdL-2JukEHh8269E5OUYmbiGciZU/view?usp=sharing) | - | 79.26 | 67.82 |85.31 | 13.65 | 74.69 |
+| MLoRE (ViT-L) | NYUD-v2 | [Google](https://drive.google.com/file/d/1BOaw5zaZGg6MXl6wH13a306WoAYEXxzX/view?usp=sharing) | 0.5076 | 55.96 | - | - | 18.33 | 78.43 |
 
 ### Infer with the pre-trained models
 To evaluate the pre-trained models, you can change the ```--trained_model MODEL_PATH``` in ```infer.sh``` to load the specified model.

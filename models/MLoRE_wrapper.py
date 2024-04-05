@@ -13,11 +13,7 @@ class MLoREWrapper(nn.Module):
 
         self.backbone = backbone
         self.heads = heads 
-        # if 'dd_label_map_size' in p.keys():
-        #     self.target_size = p.dd_label_map_size
-        # else:
-        #     self.target_size = None
-        self.aux_heads = aux_heads
+
 
 
     def forward(self, x,  need_info=False):

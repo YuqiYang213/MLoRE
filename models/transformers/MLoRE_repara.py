@@ -472,17 +472,13 @@ class MLoRE(nn.Module):
         for il in range(self.num_layers):
             self.MLoRE_2.append(MOEBlock(p, final_embed_dim, im_size=pixel_no, kernel_size=3,with_feat=False))
         self.task_mask = nn.ModuleDict()
-        self.q_fuse = nn.ModuleDict()
         
         for task in p.TASKS.NAMES:
-            self.q_fuse[task] = nn.Conv2d(final_embed_dim * 4, final_embed_dim, kernel_size=1, stride=1, padding=0)
             self.task_mask[task] = nn.Sequential(
                                                 nn.Conv2d(final_embed_dim * 4, final_embed_dim, kernel_size=1),
                                                 BatchNorm2d(final_embed_dim), nn.GELU(),  
                                                 nn.Conv2d(final_embed_dim, self.num_layers, kernel_size=3, padding=1))
         
-        self.classify_route_1 = nn.Conv2d(final_embed_dim // 2, len(p.TASKS.NAMES), kernel_size=1)
-        self.classify_route_2 = nn.Conv2d(final_embed_dim // 2, len(p.TASKS.NAMES), kernel_size=1)
         
         self.init_weights(weight_init)
 
@@ -537,7 +533,6 @@ class MLoRE(nn.Module):
                 _cur_task_fea, x_q, info, route_feat_1, route_prob_1[il] = self.cal_task_feature(x, attn_weight, il, info, route_feat_1)
                 for task in all_tasks:
                     _cur_task_fea_now, route_feat_2[task], route_prob_2[il][task] = self.MLoRE_2[il](_cur_task_fea[task], task, route_feat_2[task])
-                    # for t_idx, task in enumerate(self.p.TASKS.NAMES):
                     x_q_list[task].append(x_q[task])
                     out_feat[task].append(_cur_task_fea_now)
             
@@ -557,21 +552,10 @@ class MLoRE(nn.Module):
             mask_now = torch.softmax(mask_now, dim=1)
             for il in range(self.num_layers):
                 last_feat[task] = last_feat[task] + mask_now[:, il].unsqueeze(1) * out_feat[task][il]
-        for task in all_tasks:
-            route_feat_1[task] = self.classify_route_1(route_feat_1[task])
-            route_feat_2[task] = self.classify_route_2(route_feat_2[task])
-        info['route_1'] = route_feat_1
-        info['route_2'] = route_feat_2
         info['route_1_prob'] = route_prob_1
         info['route_2_prob'] = route_prob_2
         for task in last_feat.keys():
             last_feat[task] = F.interpolate(last_feat[task], scale_factor=4, mode=INTERPOLATE_MODE)
-        if not eval:
-            x_q_feat = {task:0 for task in self.p.TASKS.NAMES}
-            for task in self.p.TASKS.NAMES:
-                x_q_feat[task] = self.q_fuse[task](torch.cat(x_q_list[task], dim=1))
-                x_q_feat[task] = F.interpolate(x_q_feat[task], scale_factor=4, mode=INTERPOLATE_MODE)
-            return (x_q_feat, last_feat), info
         return last_feat, info
 
     def cal_task_feature(self, x, attn_weight, il, info, route_feat):
@@ -799,6 +783,7 @@ class ConvHead(nn.Module):
         trunc_normal_(self.mt_proj[0].weight, std=0.02)
 
         self.linear_pred = nn.Conv2d(in_channels, num_classes, kernel_size=1)
+        nn.init.normal(self.linear_pred.bias, mean=0, std=0.02)
 
     def forward(self, x):
         return self.linear_pred(self.mt_proj(x))

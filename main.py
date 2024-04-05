@@ -19,6 +19,7 @@ from utils.logger import Logger
 from utils.train_utils import train_phase
 from utils.test_utils import test_phase
 from evaluation.evaluate_utils import PerformanceMeter
+import torch.nn as nn
 
 # import wandb
 
@@ -91,7 +92,7 @@ def main():
     model = get_model(p)
     model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model).cuda()
     # model = model.cuda()
-    model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.local_rank], output_device=args.local_rank, find_unused_parameters=True)
+    model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.local_rank], output_device=args.local_rank)
 
     # Get criterion
     criterion = get_criterion(p).cuda()
@@ -132,7 +133,7 @@ def main():
             else:
                 start_epoch = 0
             if 'iter_count' in checkpoint.keys():
-                iter_count  = checkpoint['iter_count'] # already + 1 when saving
+                iter_count  = checkpoint['iter_count'] + 1 # already + 1 when saving
             else:
                 iter_count = 0
         else:
@@ -160,16 +161,6 @@ def main():
                 print('Use checkpoint {}'.format(checkpoint_path))
             checkpoint = torch.load(checkpoint_path, map_location='cpu')
 
-            # # delete after debugging
-            # checkpoint_new = {}
-            # for k, v in checkpoint['model'].items():
-            #     if 'q_generate' in k:
-            #         k_new = k.replace('q_generate', 'MLoRE_1')
-            #     elif 'feat_decode_increa' in k:
-            #         k_new = k.replace('feat_decode_increa', 'MLoRE_2')
-            #     else:
-            #         k_new = k
-            #     checkpoint_new[k_new] = v
             
             model.load_state_dict(checkpoint['model'], strict=True)
             if 'repara' in p.backbone:
@@ -185,8 +176,6 @@ def main():
         run_time = (end_time-start_time) / 3600
         print('Total running time: {} h.'.format(run_time))
 
-        # torch.save({'model': model.state_dict(), 
-        #                 }, 'pretrain_nyud_vitl.pth')
 
 if __name__ == "__main__":
     # IMPORTANT VARIABLES
