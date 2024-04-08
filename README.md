@@ -95,11 +95,15 @@ To evaluate the pre-trained models, you can change the ```--trained_model MODEL_
 #  Cite
 <!-- Please consider :star2: star our project to share with your community if you find this repository helpful! -->
 If you find our work helpful, please cite:
-<!-- 
 BibTex:
 ```
-
-``` -->
+@inproceedings{jiang2024mlore,
+  title={Multi-Task Dense Prediction via Mixture of Low-Rank Experts},
+  author={Yang, Yuqi and Jiang, Peng-Tao and Hou, Qibin and Zhang, Hao and Chen, Jinwei and Li, Bo},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  year={2024}
+}
+```
 
 # Contact
 If you have any questions, please feel free to contact Me(yangyq2000 AT mail DOT nankai DOT edu DOT cn).
