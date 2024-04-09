@@ -5,10 +5,10 @@
 </p>
 
 ##  Abstract
-We provide the code for MLoRE, a new multi-task framework for dense prediction. Our code is implented on PASCAL-Context and NYUD-v2 based on ViT.
+We provide the code for MLoRE, a new multi-task framework for dense prediction. Our code is implemented on PASCAL-Context and NYUD-v2 based on ViT.
 
 - MLoRE builds a novel decoder module based on MoE(Mixture of Experts) that can capture the global relationship across all tasks.
-- To further reduce the computation cost and parameters, MLoRE introduce low-rank linear experts, which can enlarge the capacity of feature representations without increasing the model size too much.
+- To further reduce the computation cost and parameters, MLoRE introduces low-rank linear experts, which can enlarge the capacity of feature representations without increasing the model size too much.
 - The design of MLoRE achieves a new state-of-the-art (SOTA) performance with superior efficiency on PASCAL-Context and NYUD-v2. 
 
 Please check the [paper](https://arxiv.org/abs/2403.17749) for more details.
@@ -45,11 +45,11 @@ wget https://data.vision.ee.ethz.ch/brdavid/atrc/PASCALContext.tar.gz
 tar xfvz NYUDv2.tar.gz
 ```
 
-**Attention**:You need to specify the root directory of your own datasets as ```db_root``` variable in ```configs/mypath.py```.
+**Attention**: you need to specify the root directory of your own datasets as ```db_root``` variable in ```configs/mypath.py```.
 
 
 ## 3. Training
-You can train you own model by using the following commands.
+You can train your own model by using the following commands.
 PASCAL-Context:
 ```bash
 bash run_MLoRE_pascal.sh
