@@ -78,8 +78,6 @@ def main():
             mkdir_if_missing(tb_log_dir)
             mkdir_if_missing(train_tb_log_dir)
             mkdir_if_missing(test_tb_log_dir)
-            # os.environ["WANDB_SILENT"] = "true"
-            # wandb.init(project="taskprompter", name=p['version_name'], sync_tensorboard=True, dir=os.path.abspath(tb_log_dir))
         tb_writer_train = SummaryWriter(train_tb_log_dir)
         tb_writer_test = SummaryWriter(test_tb_log_dir)
         print(f"Tensorboard dir: {tb_log_dir}")

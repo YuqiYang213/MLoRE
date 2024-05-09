@@ -44,7 +44,8 @@ def vis_semseg(p, _semseg):
 
 def vis_parts(inp):
     new_cmap = labelcolormap(7)
-    inp = new_cmap[inp]  
+    inp = inp.astype(np.uint64)
+    inp = new_cmap[inp]
     return inp
 
 def visulization_for_gt(p, sample, save_dir, task):
@@ -57,14 +58,17 @@ def visulization_for_gt(p, sample, save_dir, task):
         arr[arr == 255] = 0
         arr = vis_semseg(p, arr)
     elif task == 'sal':
-        pass
+        arr = arr * 255
+        arr = arr.astype(np.uint64)
     elif task == 'edge':
-        pass
+        arr = arr * 255
+        arr = arr.astype(np.uint64)
     elif task == 'human_parts':
         arr[arr == 255] = 0
         arr = vis_parts(arr)
     elif task == 'normals':
-        pass
+        arr = (arr + 1) / 2 * 255
+        arr = arr.astype(np.uint64)
     elif task == 'depth':
         arr = arr.squeeze()
         arr = (arr - arr.min()) / (arr.max() - arr.min()) * 255
@@ -73,6 +77,8 @@ def visulization_for_gt(p, sample, save_dir, task):
         cv2.imwrite(filepath, arr_colored)
         return
 
+    if arr.shape[2] == 1:
+        arr = arr.squeeze(2)
     arr_uint8 = arr
     if arr_uint8.ndim == 3:
         arr_uint8 = arr_uint8[:, :, [2, 1, 0]] # Convert RGB to BGR for OpenCV

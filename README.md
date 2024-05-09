@@ -23,8 +23,8 @@ Please check the [paper](https://arxiv.org/abs/2403.17749) for more details.
 ## 1. Environment
 You can use the following command to prepare your environment.
 ```bash
-conda create -n taskprompter python=3.7
-conda activate taskprompter
+conda create -n mlore python=3.7
+conda activate mlore
 pip install tqdm Pillow==9.5 easydict pyyaml imageio scikit-image tensorboard
 pip install opencv-python==4.7.0.72 setuptools==59.5.0
 

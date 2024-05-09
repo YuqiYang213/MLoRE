@@ -22,7 +22,6 @@ class MLoREWrapper(nn.Module):
 
         target_size = img_size
 
-        # TaskPrompter
         task_features, info = self.backbone(x) 
         
         # Generate predictions
