@@ -33,15 +33,14 @@ pip install timm==0.5.4 einops==0.4.1
 ```
 
 ## 2. Data
-You can download the PASCAL-Context and NYUD-v2 from ATRC's repository:
+You can download the PASCAL-Context and NYUD-v2 from ATRC's repository in [PASCALContext.tar.gz](https://hkustconnect-my.sharepoint.com/:u:/g/personal/hyeae_connect_ust_hk/ER57KyZdEdxPtgMCai7ioV0BXCmAhYzwFftCwkTiMmuM7w?e=2Ex4ab),
+[NYUDv2.tar.gz](https://hkustconnect-my.sharepoint.com/:u:/g/personal/hyeae_connect_ust_hk/EZ-2tWIDYSFKk7SCcHRimskBhgecungms4WFa_L-255GrQ?e=6jAt4c):
 ### PASCAL-Context
 ```bash
-wget https://data.vision.ee.ethz.ch/brdavid/atrc/NYUDv2.tar.gz
 tar xfvz PASCALContext.tar.gz
 ```
 ### NYUD-v2
 ```bash
-wget https://data.vision.ee.ethz.ch/brdavid/atrc/PASCALContext.tar.gz
 tar xfvz NYUDv2.tar.gz
 ```
 
