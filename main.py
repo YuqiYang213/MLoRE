@@ -90,7 +90,7 @@ def main():
     model = get_model(p)
     model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model).cuda()
     # model = model.cuda()
-    model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.local_rank], output_device=args.local_rank)
+    model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.local_rank], output_device=args.local_rank, find_unused_parameters=True)
 
     # Get criterion
     criterion = get_criterion(p).cuda()
@@ -160,7 +160,7 @@ def main():
             checkpoint = torch.load(checkpoint_path, map_location='cpu')
 
             
-            model.load_state_dict(checkpoint['model'], strict=True)
+            model.load_state_dict(checkpoint['model'], strict=False)
             if 'repara' in p.backbone:
                 model.module.backbone.reparameter()
             eval_epoch=0

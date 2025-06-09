@@ -19,7 +19,7 @@ def get_backbone(p):
     """ Return the backbone """
 
     if p['backbone'] == 'MLoRE_vitB':
-        from models.transformers.MLoRE import MLoRE_vit_base_patch16_384
+        from models.transformers.MLoRE_vitB import MLoRE_vit_base_patch16_384
         backbone = MLoRE_vit_base_patch16_384(p=p, pretrained=True, drop_path_rate=0.15, img_size=p.TRAIN.SCALE)
         backbone_channels = p.final_embed_dim
         p.backbone_channels = backbone_channels
@@ -76,6 +76,13 @@ def get_model(p):
     # The change of backbone channels(last output) will change the head channels 
     if p['model'] == 'MLoRE':
         from models.MLoRE_wrapper import MLoREWrapper
+        feat_channels = backbone_channels
+        heads = torch.nn.ModuleDict({task: get_head(p, feat_channels, task) for task in p.TASKS.NAMES})
+        aux_heads = torch.nn.ModuleDict({task:get_head(p, feat_channels, task) for task in p.TASKS.NAMES})
+        # aux_heads = None
+        model = MLoREWrapper(p, backbone, heads, aux_heads=aux_heads)
+    elif p['model'] == 'MLoRE_ViTB':
+        from models.MLoRE_wrapper_vitb import MLoREWrapper
         feat_channels = backbone_channels
         heads = torch.nn.ModuleDict({task: get_head(p, feat_channels, task) for task in p.TASKS.NAMES})
         aux_heads = torch.nn.ModuleDict({task:get_head(p, feat_channels, task) for task in p.TASKS.NAMES})

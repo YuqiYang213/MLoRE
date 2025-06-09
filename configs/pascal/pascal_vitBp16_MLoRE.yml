@@ -23,7 +23,7 @@ scheduler: poly
 grad_clip_param: {'max_norm': 10, 'norm_type': 2}
 
 # Model
-model: MLoRE
+model: MLoRE_ViTB
 backbone: MLoRE_vitB
 head:  conv
 final_embed_dim: 640
